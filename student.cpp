@@ -1,11 +1,11 @@
 #include <string>
 #include "student.hpp"
 
-int Student::student_number = 0;
+int Student::total_student_no = 0;
 
 Student::Student (std::string fname, std::string lname, int age):
 	Person(fname, lname, age) {
-		student_number++;
+		student_number = ++total_student_no;
 }
 
 int Student::getStudentNumber() {

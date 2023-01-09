@@ -1,1 +1,7 @@
 main.exe
+*.swp
+*.un~
+*.cpp~
+*.hpp~
+*.gitignore~
+

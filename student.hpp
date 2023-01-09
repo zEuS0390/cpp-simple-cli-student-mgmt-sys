@@ -5,10 +5,11 @@
 
 class Student: public Person {
 	private:
-		static int student_number;
+		static int total_student_no;
+		int student_number;
 	public:
 		Student(std::string, std::string, int);
-		static int getStudentNumber();
+		int getStudentNumber();
 };
 
 #endif
