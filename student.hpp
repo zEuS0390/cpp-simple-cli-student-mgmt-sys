@@ -10,6 +10,8 @@ class Student: public Person {
 	public:
 		Student(std::string, std::string, int);
 		int getStudentNumber();
+		static Student* createStudent();
 };
+
 
 #endif
