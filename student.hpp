@@ -13,5 +13,4 @@ class Student: public Person {
 		static Student* createStudent();
 };
 
-
 #endif
