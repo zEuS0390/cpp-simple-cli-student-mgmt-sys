@@ -2,6 +2,7 @@
 #include <string>
 #include <functional>
 #include <map>
+#include <stdexcept>
 #include "student.hpp"
 #include "classes.hpp"
 #include "menu.hpp"
@@ -20,7 +21,7 @@ int main (void) {
 	options.insert(std::make_pair(1, std::bind(option_addStudent, section)));
 	options.insert(std::make_pair(2, std::bind(option_displayStudents, section)));
 	while (running) {
-		std::cout << "Select an Option [0-" + std::to_string(options.size()) + "]: ";
+		std::cout << "Select an Option [0-" + std::to_string(options.size()-1) + "]: ";
 		std::getline(std::cin, select);
 		try {
 			std::map<int, std::function<void()>>::iterator it = options.find(std::stoi(select));
