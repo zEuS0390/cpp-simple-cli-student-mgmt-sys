@@ -16,11 +16,11 @@ int Student::getStudentNumber() {
 Student* Student::createStudent() {
 	std::string first_name, last_name;
 	int age;
-	std::cout << "First Name?: ";
+	std::cout << "\n\tFirst Name?: ";
 	getline(std::cin, first_name);
-	std::cout << "Last Name?: ";
+	std::cout << "\tLast Name?: ";
 	getline(std::cin, last_name);
-	std::cout << "Age?: ";
+	std::cout << "\tAge?: ";
 	std::cin >> age;
 	std::cin.ignore();
 	return new Student(first_name, last_name, age);

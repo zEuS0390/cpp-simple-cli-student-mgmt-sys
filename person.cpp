@@ -7,6 +7,6 @@ Person::Person (std::string fname, std::string lname, int age):
 }
 
 void Person::getInfo() {
-	std::string str = "First Name: "+first_name+"\n"+"Last Name: "+last_name+"\n"+"Age: "+std::to_string(age)+"\n";
+	std::string str = "\tFirst Name: "+first_name+"\n\tLast Name: "+last_name+"\n\tAge: "+std::to_string(age)+"\n";
 	std::cout << str;
 }

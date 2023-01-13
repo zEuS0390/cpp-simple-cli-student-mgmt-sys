@@ -13,11 +13,13 @@ void Classes::addStudent(Student *student) {
 }
 
 void Classes::displayAllStudents() {
+	std::cout << "\n\t=========================================\n";
 	for (int i = 0; i < total_students; i++) {
-		std::cout << "----------\n";
-		std::cout << "Student Number: " << std::to_string(students[i]->getStudentNumber()) + "\n";
+		std::cout << "\t-----------------------------------------\n";
+		std::cout << "\tStudent Number: " << std::to_string(students[i]->getStudentNumber()) + "\n";
 		students[i]->getInfo();
-		std::cout << "----------\n";
+		std::cout << "\t-----------------------------------------\n";
 	}
+	std::cout << "\n\t=========================================\n";
 }
 
