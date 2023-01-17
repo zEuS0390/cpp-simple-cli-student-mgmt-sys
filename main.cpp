@@ -5,7 +5,6 @@
 #include <stdexcept>
 #include "student.hpp"
 #include "classes.hpp"
-#include "menu.hpp"
 
 void displayOptions(std::string*, int);
 void option_exit(bool*);
