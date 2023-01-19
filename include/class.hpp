@@ -6,10 +6,6 @@
 #define MAX_STUDENTS 40
 
 class Class {
-	private:
-		std::string class_name;
-		std::array<Student*, MAX_STUDENTS> students;
-		int total_students;
 	public:
 		Class(std::string);
 		void addStudent(Student*);
@@ -17,6 +13,10 @@ class Class {
 		void deleteStudent(int);
 		void displayAllStudents();
 		int findStudent(int);
+	private:
+		std::string class_name;
+		std::array<Student*, MAX_STUDENTS> students;
+		int total_students;
 };
 
 #endif

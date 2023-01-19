@@ -3,8 +3,8 @@
 #include "class.hpp"
 
 Class::Class (std::string class_name):
-	total_students{0},
 	class_name{class_name} {
+		total_students = 0;
 }
 
 void Class::addStudent(Student *student) {
@@ -38,7 +38,7 @@ void Class::updateStudent(int student_number) {
 				students[index]->setLastName(last_name);
 				students[index]->setAge(age);
 				break;
-			} catch (std::invalid_argument) {
+			} catch (std::invalid_argument&) {
 				continue;
 			}
 		}

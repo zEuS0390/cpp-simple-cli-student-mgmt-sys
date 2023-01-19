@@ -34,10 +34,10 @@ int main (void) {
 		displayOptions(options);
 		std::cout << "\tSelect an option [0-" + std::to_string(options.size()-1) + "]: ";
 		std::getline(std::cin, select);
-		int index;
+		unsigned int index;
 		try {
 			index = std::stoi(select);
-		} catch (std::invalid_argument) {
+		} catch (std::invalid_argument&) {
 			std::cout << "\n\tInvalid input!\n";
 			continue;
 		}
@@ -54,7 +54,7 @@ int main (void) {
 template <std::size_t SIZE>
 void displayOptions(std::array<std::pair<std::string, std::function<void()>>, SIZE> &options) {
 	std::cout << "\n\tOptions:\n\n";
-	for (int i = 0; i < options.size(); i++) {
+	for (std::size_t i = 0; i < options.size(); i++) {
 		std::cout << "\t" << std::to_string(i) + " - " + options[i].first + "\n";
 	}
 	std::cout << "\n";
@@ -78,7 +78,7 @@ void option_updateStudent(Class *section) {
 		try {
 			student_number = std::stoi(str_student_number);
 			break;
-		} catch (std::invalid_argument) {
+		} catch (std::invalid_argument&) {
 			std::cout << "\n\tInvalid input!\n";
 			continue;
 		}
@@ -95,7 +95,7 @@ void option_deleteStudent(Class *section) {
 		try {
 			student_number = std::stoi(str_student_number);
 			break;
-		} catch (std::invalid_argument) {
+		} catch (std::invalid_argument&) {
 			std::cout << "\n\tInvalid input!\n";
 			continue;
 		}

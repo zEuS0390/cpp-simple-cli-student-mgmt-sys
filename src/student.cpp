@@ -9,6 +9,9 @@ Student::Student (std::string fname, std::string lname, int age):
 		student_number = ++total_student_no;
 }
 
+Student::~Student() {
+}
+
 int Student::getStudentNumber() {
 	return student_number;
 }
@@ -39,7 +42,7 @@ Student* Student::createStudent() {
 				age = std::stoi(str_age);
 				break;
 			}
-		} catch (std::invalid_argument) {
+		} catch (std::invalid_argument&) {
 			continue;
 		}
 	}
