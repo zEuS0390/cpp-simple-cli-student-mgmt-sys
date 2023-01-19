@@ -29,15 +29,17 @@ int main (void) {
 		displayOptions(options);
 		std::cout << "\tSelect an option [0-" + std::to_string(options.size()-1) + "]: ";
 		std::getline(std::cin, select);
+		int index;
 		try {
-			int index = std::stoi(select);
-			if (index >= 0 && index < options.size()) {
-				options[index].second();
-			} else {
-				std::cout << "\n\tSelected option is out of range!\n";
-			}
+			index = std::stoi(select);
 		} catch (std::invalid_argument) {
 			std::cout << "\n\tInvalid input!\n";
+			continue;
+		}
+		if (index >= 0 && index < options.size()) {
+			options[index].second();
+		} else {
+			std::cout << "\n\tSelected option is out of range!\n";
 		}
 	}
 

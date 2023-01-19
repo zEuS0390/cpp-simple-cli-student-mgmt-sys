@@ -5,7 +5,7 @@
 int Student::total_student_no = 0;
 
 Student::Student (std::string fname, std::string lname, int age):
-	Person(fname, lname, age) {
+	Person{fname, lname, age} {
 		student_number = ++total_student_no;
 }
 
@@ -14,7 +14,8 @@ int Student::getStudentNumber() {
 }
 
 Student* Student::createStudent() {
-	std::string first_name, last_name, age;
+	std::string first_name, last_name, str_age;
+	int age;
 	std::cout << "\n";
 	while (true) {
 		std::cout << "\tFirst Name?: ";
@@ -32,10 +33,15 @@ Student* Student::createStudent() {
 	}
 	while (true) {
 		std::cout << "\tAge?: ";
-		getline(std::cin, age);
-		if (age.length() > 0) {
-			break;
+		getline(std::cin, str_age);
+		try {
+			if (str_age.length() > 0) {
+				age = std::stoi(str_age);
+				break;
+			}
+		} catch (std::invalid_argument) {
+			continue;
 		}
 	}
-	return new Student(first_name, last_name, std::stoi(age));
+	return new Student(first_name, last_name, age);
 }
