@@ -9,7 +9,10 @@ class Person {
 		int age;
 	public:
 		Person (std::string, std::string, int);
-		void getInfo();
+		virtual void getInfo();
+		virtual void setFirstName(std::string);
+		virtual void setLastName(std::string);	
+		virtual void setAge(int);
 };
 
 #endif

@@ -16,6 +16,59 @@ void Class::addStudent(Student *student) {
 	total_students++;
 }
 
+void Class::updateStudent(int student_number) {
+	std::string first_name, last_name, str_age;
+	int age;
+	if (total_students == 0) {
+		std::cout << "\n\tThe class is empty.\n";
+		return;
+	}
+	int index = findStudent(student_number);
+	if (index != -1) {
+		std::cout << "\n\tFirst Name: ";
+		std::getline(std::cin, first_name);	
+		std::cout << "\tLast Name: ";
+		std::getline(std::cin, last_name);
+		while (true) {
+			std::cout << "\tAge: ";
+			std::getline(std::cin, str_age);
+			try {
+				age = std::stoi(str_age);	
+				students[index]->setFirstName(first_name);
+				students[index]->setLastName(last_name);
+				students[index]->setAge(age);
+				break;
+			} catch (std::invalid_argument) {
+				continue;
+			}
+		}
+	} else {
+		std::cout << "\n\tStudent number doesn't exist!\n";
+	}
+	return;
+}
+
+void Class::deleteStudent(int student_number) {
+	if (total_students == 0) {
+		std::cout << "\n\tThe class is empty.\n";
+		return;
+	}
+	int index = findStudent(student_number);
+	if (index != -1) {
+		delete students[index];
+		students[index] = nullptr;
+		while (index < total_students-1) {
+			students[index] = students[index+1];
+			index++;
+		}
+		students[index] = nullptr;
+		total_students--;
+	} else {
+		std::cout << "\n\tStudent number doesn't exist!\n";
+	}	
+	return;
+}
+
 void Class::displayAllStudents() {
 	std::cout << "\n\t=========================================\n";
 	for (int i = 0; i < total_students; i++) {
@@ -45,23 +98,3 @@ int Class::findStudent(int student_number) {
 	return -1;
 }
 
-void Class::deleteStudent(int student_number) {
-	if (total_students == 0) {
-		std::cout << "\n\tThe class is empty.\n";
-		return;
-	}
-	int index = findStudent(student_number);
-	if (index != -1) {
-		delete students[index];
-		students[index] = nullptr;
-		while (index < total_students-1) {
-			students[index] = students[index+1];
-			index++;
-		}
-		students[index] = nullptr;
-		total_students--;
-	} else {
-		std::cout << "\n\tStudent number doesn't exist!\n";
-	}	
-	return;
-}

@@ -13,9 +13,10 @@ class Class {
 	public:
 		Class(std::string);
 		void addStudent(Student*);
+		void updateStudent(int);
+		void deleteStudent(int);
 		void displayAllStudents();
 		int findStudent(int);
-		void deleteStudent(int);
 };
 
 #endif
