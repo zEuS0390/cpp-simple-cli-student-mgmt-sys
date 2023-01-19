@@ -14,14 +14,28 @@ int Student::getStudentNumber() {
 }
 
 Student* Student::createStudent() {
-	std::string first_name, last_name;
-	int age;
-	std::cout << "\n\tFirst Name?: ";
-	getline(std::cin, first_name);
-	std::cout << "\tLast Name?: ";
-	getline(std::cin, last_name);
-	std::cout << "\tAge?: ";
-	std::cin >> age;
-	std::cin.ignore();
-	return new Student(first_name, last_name, age);
+	std::string first_name, last_name, age;
+	std::cout << "\n";
+	while (true) {
+		std::cout << "\tFirst Name?: ";
+		getline(std::cin, first_name);
+		if (first_name.length() > 0) {
+			break;
+		}
+	}
+	while (true) {
+		std::cout << "\tLast Name?: ";
+		getline(std::cin, last_name);
+		if (last_name.length() > 0) {
+			break;
+		}
+	}
+	while (true) {
+		std::cout << "\tAge?: ";
+		getline(std::cin, age);
+		if (age.length() > 0) {
+			break;
+		}
+	}
+	return new Student(first_name, last_name, std::stoi(age));
 }

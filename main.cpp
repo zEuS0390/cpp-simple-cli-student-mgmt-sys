@@ -4,19 +4,19 @@
 #include <map>
 #include <stdexcept>
 #include "student.hpp"
-#include "classes.hpp"
+#include "class.hpp"
 
 template <std::size_t SIZE>
 void displayOptions(std::array<std::pair<std::string, std::function<void()>>, SIZE>&);
 void option_exit(bool*);
-void option_addStudent(Classes*);
-void option_displayStudents(Classes*);
+void option_addStudent(Class*);
+void option_displayStudents(Class*);
 
 // Main function
 int main (void) {
 	bool isRunning = true;
 	std::string select;
-	Classes section("CPE1FB3");
+	Class section("CPE1FB3");
 
 	std::array<std::pair<std::string, std::function<void()>>, 3> options{{
 		{"Exit", std::bind(option_exit, &isRunning)},
@@ -57,11 +57,11 @@ void option_exit(bool *state) {
 	*state = false;
 }
 
-void option_addStudent(Classes *section) {
+void option_addStudent(Class *section) {
 	Student *student = Student::createStudent();
 	section->addStudent(student);
 }
 
-void option_displayStudents(Classes *section) {
+void option_displayStudents(Class *section) {
 	section->displayAllStudents();
 }
