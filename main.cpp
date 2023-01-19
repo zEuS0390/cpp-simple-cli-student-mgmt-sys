@@ -6,48 +6,49 @@
 #include "student.hpp"
 #include "classes.hpp"
 
-void displayOptions(std::string*, int);
+template <std::size_t SIZE>
+void displayOptions(std::array<std::pair<std::string, std::function<void()>>, SIZE>&);
 void option_exit(bool*);
 void option_addStudent(Classes*);
 void option_displayStudents(Classes*);
 
 // Main function
 int main (void) {
-	bool running = true;
+	bool isRunning = true;
 	std::string select;
-	Classes *section = new Classes("CPE1FB3");
-	std::map<int, std::function<void()>> options;
-	options.insert(std::make_pair(0, std::bind(option_exit, &running)));
-	options.insert(std::make_pair(1, std::bind(option_addStudent, section)));
-	options.insert(std::make_pair(2, std::bind(option_displayStudents, section)));
-	std::string str_options[options.size()] = {
-		"Exit",
-		"Add Student",
-		"Display Students"
-	};
-	while (running) {
-		std::cout << "\n\t%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
-		displayOptions(str_options, sizeof(str_options)/sizeof(str_options[0]));
+	Classes section("CPE1FB3");
+
+	std::array<std::pair<std::string, std::function<void()>>, 3> options{{
+		{"Exit", std::bind(option_exit, &isRunning)},
+		{"Add Student", std::bind(option_addStudent, &section)},
+		{"Display Students", std::bind(option_displayStudents, &section)}
+	}};
+
+	while (isRunning) {
+		std::cout << "\n\t" + std::string(50, '%') + "\n";
+		displayOptions(options);
 		std::cout << "\tSelect an option [0-" + std::to_string(options.size()-1) + "]: ";
 		std::getline(std::cin, select);
 		try {
-			std::map<int, std::function<void()>>::iterator it = options.find(std::stoi(select));
-			if (it != options.end()) {
-				it->second();
+			int index = std::stoi(select);
+			if (index >= 0 && index < options.size()) {
+				options[index].second();
 			} else {
-				std::cout << "Option not found!" << std::endl;
+				std::cout << "Selected option is out of range!\n";
 			}
 		} catch (std::invalid_argument) {
-			std::cout << "Invalid input!" << std::endl;
+			std::cout << "\n\tInvalid input!\n";
 		}
 	}
+
 	return 0;
 }
 
-void displayOptions(std::string *str_options, int length) {
+template <std::size_t SIZE>
+void displayOptions(std::array<std::pair<std::string, std::function<void()>>, SIZE> &options) {
 	std::cout << "\n\tOptions:\n\n";
-	for (int i = 0; i < length; i++) {
-		std::cout << "\t" << std::to_string(i) + " - " + str_options[i] + "\n";
+	for (int i = 0; i < options.size(); i++) {
+		std::cout << "\t" << std::to_string(i) + " - " + options[i].first + "\n";
 	}
 	std::cout << "\n";
 }
