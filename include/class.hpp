@@ -7,7 +7,7 @@
 
 class Class {
 	public:
-		Class(std::string);
+		explicit Class(const std::string&);
 		void addStudent(Student*);
 		void updateStudent(int);
 		void deleteStudent(int);

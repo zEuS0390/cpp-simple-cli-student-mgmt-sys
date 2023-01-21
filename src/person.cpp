@@ -2,7 +2,7 @@
 #include <string>
 #include "person.hpp"
 
-Person::Person (std::string fname, std::string lname, int age):
+Person::Person (const std::string &fname, const std::string &lname, int age):
 	first_name(fname), last_name(lname), age(age) {
 }
 

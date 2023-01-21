@@ -5,7 +5,7 @@
 
 class Student: public Person {
 	public:
-		Student(std::string, std::string, int);
+		Student(const std::string&, const std::string&, int);
 		virtual ~Student();
 		int getStudentNumber();
 		static Student* createStudent();

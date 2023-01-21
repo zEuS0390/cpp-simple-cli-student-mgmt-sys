@@ -2,7 +2,7 @@
 #include <string>
 #include "class.hpp"
 
-Class::Class (std::string class_name):
+Class::Class (const std::string &class_name):
 	class_name{class_name} {
 		total_students = 0;
 }
@@ -17,14 +17,13 @@ void Class::addStudent(Student *student) {
 }
 
 void Class::updateStudent(int student_number) {
-	std::string first_name, last_name, str_age;
-	int age;
 	if (total_students == 0) {
 		std::cout << "\n\tThe class is empty.\n";
 		return;
 	}
 	int index = findStudent(student_number);
 	if (index != -1) {
+		std::string first_name, last_name, str_age;
 		std::cout << "\n\tFirst Name: ";
 		std::getline(std::cin, first_name);	
 		std::cout << "\tLast Name: ";
@@ -33,7 +32,7 @@ void Class::updateStudent(int student_number) {
 			std::cout << "\tAge: ";
 			std::getline(std::cin, str_age);
 			try {
-				age = std::stoi(str_age);	
+				int age = std::stoi(str_age);	
 				students[index]->setFirstName(first_name);
 				students[index]->setLastName(last_name);
 				students[index]->setAge(age);
@@ -83,9 +82,8 @@ void Class::displayAllStudents() {
 int Class::findStudent(int student_number) {
 	int left = 0;
 	int right = total_students - 1;
-	int middle;
 	while (left <= right) {
-		middle = left + (right - left) / 2;
+		int middle = left + (right - left) / 2;
 		if (students[middle]->getStudentNumber() == student_number) {
 			return middle;
 		}

@@ -41,7 +41,7 @@ int main (void) {
 			std::cout << "\n\tInvalid input!\n";
 			continue;
 		}
-		if (index >= 0 && index < options.size()) {
+		if (index < options.size()) {
 			options[index].second();
 		} else {
 			std::cout << "\n\tSelected option is out of range!\n";
