@@ -42,7 +42,7 @@ void Class::updateStudent(int student_number) {
 			}
 		}
 	} else {
-		std::cout << "\n\tStudent number doesn't exist!\n";
+		std::cout << "\n\tStudent doesn't exist!\n";
 	}
 	return;
 }
@@ -63,18 +63,22 @@ void Class::deleteStudent(int student_number) {
 		students[index] = nullptr;
 		total_students--;
 	} else {
-		std::cout << "\n\tStudent number doesn't exist!\n";
+		std::cout << "\n\tStudent doesn't exist!\n";
 	}	
 	return;
 }
 
 void Class::displayAllStudents() {
 	std::cout << "\n\t=========================================\n";
-	for (int i = 0; i < total_students; i++) {
-		std::cout << "\t-----------------------------------------\n";
-		std::cout << "\tStudent Number: " << std::to_string(students[i]->getStudentNumber()) + "\n";
-		students[i]->getInfo();
-		std::cout << "\t-----------------------------------------\n";
+	if (total_students == 0) {
+		std::cout << "\n\tThe class is empty.\n";
+	} else {
+		for (int i = 0; i < total_students; i++) {
+			std::cout << "\t-----------------------------------------\n";
+			std::cout << "\tStudent Number: " << std::to_string(students[i]->getStudentNumber()) + "\n";
+			students[i]->getInfo();
+			std::cout << "\t-----------------------------------------\n";
+		}
 	}
 	std::cout << "\n\t=========================================\n";
 }

@@ -54,8 +54,8 @@ int main (void) {
 template <std::size_t SIZE>
 void displayOptions(std::array<std::pair<std::string, std::function<void()>>, SIZE> &options) {
 	std::cout << "\n\tOptions:\n\n";
-	for (std::size_t i = 0; i < options.size(); i++) {
-		std::cout << "\t" << std::to_string(i) + " - " + options[i].first + "\n";
+	for (std::size_t i = 1; i < options.size(); i++) {
+		std::cout << "\t[" << std::to_string(i) + "] " + options[i].first + "\n";
 	}
 	std::cout << "\n";
 }
