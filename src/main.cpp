@@ -4,9 +4,11 @@
 #include <map>
 #include <stdexcept>
 #include <array>
+#include <cstdlib> 
 #include "student.hpp"
 #include "class.hpp"
 
+void clear(void);
 template <std::size_t SIZE>
 void displayOptions(std::array<std::pair<std::string, std::function<void()>>, SIZE>&);
 void option_exit(bool*);
@@ -29,6 +31,7 @@ int main (void) {
 		{"Display Students", std::bind(option_displayStudents, &section)}
 	}};
 
+	clear();
 	while (isRunning) {
 		std::cout << "\n\t" + std::string(50, '%') + "\n";
 		displayOptions(options);
@@ -39,6 +42,9 @@ int main (void) {
 			index = std::stoi(select);
 		} catch (std::invalid_argument&) {
 			std::cout << "\n\tInvalid input!\n";
+			std::cout << "\n\tPress any key to continue...";
+			std::cin.get();
+			clear();
 			continue;
 		}
 		if (index < options.size()) {
@@ -46,9 +52,20 @@ int main (void) {
 		} else {
 			std::cout << "\n\tSelected option is out of range!\n";
 		}
+		std::cout << "\n\tPress any key to continue...";
+		std::cin.get();
+		clear();
 	}
 
 	return 0;
+}
+
+void clear(void) {
+	#ifdef _WIN32
+	std::system("cls");
+	#else
+	std::system("clear");
+	#endif
 }
 
 template <std::size_t SIZE>
