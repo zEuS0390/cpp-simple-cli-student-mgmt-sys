@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <variant>
 #include "class.hpp"
 
 Class::Class (const std::string &class_name):
@@ -69,18 +71,24 @@ void Class::deleteStudent(int student_number) {
 }
 
 void Class::displayAllStudents() {
-	std::cout << "\n\t=========================================\n";
+	std::cout << "\n\t" + std::string(100, '=') + "\n";
 	if (total_students == 0) {
 		std::cout << "\n\tThe class is empty.\n";
 	} else {
+		std::cout << "\tStudent Number\t\tFirst Name\t\tLast Name\t\tAge\n";
+		std::cout << "\t"+ std::string(100, '-') + "\n";
 		for (int i = 0; i < total_students; i++) {
-			std::cout << "\t-----------------------------------------\n";
-			std::cout << "\tStudent Number: " << std::to_string(students[i]->getStudentNumber()) + "\n";
-			students[i]->getInfo();
-			std::cout << "\t-----------------------------------------\n";
+			std::vector<std::variant<std::string, int>> student_personal_info = students[i]->getInfo();
+			std::string first_name = std::get<std::string>(student_personal_info[0]);
+			std::string last_name = std::get<std::string>(student_personal_info[1]);
+			int age = std::get<int>(student_personal_info[2]);
+			const int student_number = students[i]->getStudentNumber();
+			std::string str = "\t" + std::to_string(student_number) + "\t\t\t" + first_name + "\t\t" + last_name + "\t\t" + std::to_string(age) + "\n";
+			std::cout << str;
+			std::cout << "\t"+ std::string(100, '-') + "\n";
 		}
 	}
-	std::cout << "\n\t=========================================\n";
+	std::cout << "\n\t" + std::string(100, '=') + "\n";
 }
 
 int Class::findStudent(int student_number) {

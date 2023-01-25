@@ -1,5 +1,6 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 PROJECT(simple_student_mgmt_sys) 
+SET(CMAKE_CXX_STANDARD 20)
 INCLUDE_DIRECTORIES(include)
 ADD_EXECUTABLE(
 	simple_student_mgmt_sys

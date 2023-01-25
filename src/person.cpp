@@ -1,14 +1,19 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <variant>
 #include "person.hpp"
 
 Person::Person (const std::string &fname, const std::string &lname, int age):
 	first_name(fname), last_name(lname), age(age) {
 }
 
-void Person::getInfo() {
-	std::string str = "\tFirst Name: "+first_name+"\n\tLast Name: "+last_name+"\n\tAge: "+std::to_string(age)+"\n";
-	std::cout << str;
+std::vector<std::variant<std::string, int>> Person::getInfo() {
+	std::vector<std::variant<std::string, int>> vec;
+	vec.push_back(first_name);
+	vec.push_back(last_name);
+	vec.push_back(age);
+	return vec;
 }
 
 void Person::setFirstName(std::string fname) {
