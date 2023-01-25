@@ -7,4 +7,5 @@ ADD_EXECUTABLE(
 	src/person.cpp
 	src/student.cpp
 	src/class.cpp
+	src/options.cpp
 )
