@@ -17,13 +17,13 @@ std::vector<std::variant<std::string, int>> Person::getInfo() {
 }
 
 void Person::setFirstName(std::string fname) {
-	first_name = fname;
+	this->first_name = fname;
 }
 
 void Person::setLastName(std::string lname) {
-	last_name = lname;
+	this->last_name = lname;
 }
 
 void Person::setAge(int a) {
-	age = a;
+	this->age = a;
 }
