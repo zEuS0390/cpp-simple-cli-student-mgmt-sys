@@ -9,6 +9,12 @@ Class::Class (const std::string &class_name):
 		total_students = 0;
 }
 
+Class::~Class () {
+	for (int i = 0; i < total_students; i++) {
+		deleteStudent(students[i]->getStudentNumber());
+	}	
+}
+
 void Class::addStudent(Student *student) {
 	if (total_students == MAX_STUDENTS) {
 		std::cout << "\n\tThe array is already full.\n";

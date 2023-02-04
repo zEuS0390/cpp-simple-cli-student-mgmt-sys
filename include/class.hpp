@@ -8,6 +8,7 @@
 class Class {
 	public:
 		explicit Class(const std::string&);
+		~Class();
 		void addStudent(Student*);
 		void updateStudent(int);
 		void deleteStudent(int);
