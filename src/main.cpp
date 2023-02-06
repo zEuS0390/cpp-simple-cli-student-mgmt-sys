@@ -46,8 +46,7 @@ int main (void) {
 			index = std::stoi(select);
 		} catch (std::invalid_argument&) {
 			std::cout << "\n\tInvalid input!\n";
-			wait();
-			clear();
+			wait(); clear();
 			continue;
 		}
 		if (index < options.size()) {
@@ -55,8 +54,7 @@ int main (void) {
 		} else {
 			std::cout << "\n\tSelected option is out of range!\n";
 		}
-		wait();
-		clear();
+		wait(); clear();
 	}
 	return 0;
 }
