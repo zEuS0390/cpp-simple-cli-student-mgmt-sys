@@ -13,7 +13,6 @@
 #define CLEAR_COMMAND "clear"
 #endif
 #define OPTION [](Class &section, bool &isRunning)
-#define SET_LAMBDA(name, expr) auto name = expr
 #include "constants.hpp"
 
 inline void clear() { std::system(CLEAR_COMMAND); }
