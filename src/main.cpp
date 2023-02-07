@@ -12,36 +12,29 @@
 #else
 #define CLEAR_COMMAND "clear"
 #endif
+#define OPTION [](Class &section, bool &isRunning)
+#define SET_LAMBDA(name, expr) auto name = expr
+#include "constants.hpp"
 
-template <std::size_t SIZE>
-using ArrayOptions = std::array<std::pair<std::string, std::function<void()>>, SIZE>;
-
-template <std::size_t SIZE>
-void displayOptions(ArrayOptions<SIZE>&);
+inline void clear() { std::system(CLEAR_COMMAND); }
+inline void wait() { std::cout << "\n\tPress any key to continue..."; std::cin.get(); }
 
 // Main function
 int main (void) {
-	auto clear = []{std::system(CLEAR_COMMAND);};
-	auto wait = []{
-		std::cout << "\n\tPress any key to continue...";
-		std::cin.get();
-	};
 	bool isRunning = true;
 	std::string select;
 	Class section("CPE1FB3");
-
-	ArrayOptions<5> options{{
-		{"Exit", std::bind(option::exit, &isRunning)},
-		{"Add Student", std::bind(option::addStudent, &section)},
-		{"Update Student", std::bind(option::updateStudent, &section)},
-		{"Delete Student", std::bind(option::deleteStudent, &section)},
-		{"Display Students", std::bind(option::displayStudents, &section)}
-	}};
-
+	Options options = {
+		{"Exit", OPTION{ option::exit(&isRunning); }}, 
+		{"Add Student", OPTION{ option::addStudent(&section); }},
+		{"Update Student", OPTION{ option::updateStudent(&section); }},
+		{"Delete Student", OPTION{ option::deleteStudent(&section); }},
+		{"Display Students", OPTION{ option::displayStudents(&section); }}
+	};
 	clear();
 	while (isRunning) {
 		std::cout << "\n\t" + std::string(50, '%') + "\n";
-		displayOptions(options);
+		options.display();
 		std::cout << "\tSelect an option [0-" + std::to_string(options.size()-1) + "]: ";
 		std::getline(std::cin, select);
 		unsigned int index;
@@ -49,27 +42,15 @@ int main (void) {
 			index = std::stoi(select);
 		} catch (std::invalid_argument&) {
 			std::cout << "\n\tInvalid input!\n";
-			wait();
-			clear();
+			wait(); clear();
 			continue;
 		}
 		if (index < options.size()) {
-			options[index].second();
+			options.execute(index, section, isRunning);
 		} else {
 			std::cout << "\n\tSelected option is out of range!\n";
 		}
-		wait();
-		clear();
+		wait(); clear();
 	}
-
 	return 0;
-}
-
-template <std::size_t SIZE>
-void displayOptions(ArrayOptions<SIZE> &options) {
-	std::cout << "\n\tOptions:\n\n";
-	for (std::size_t i = 1; i < options.size(); i++) {
-		std::cout << "\t[" << std::to_string(i) + "] " + options[i].first + "\n";
-	}
-	std::cout << "\n";
 }
