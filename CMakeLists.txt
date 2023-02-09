@@ -1,4 +1,4 @@
-cmake_minimum_requirements(VERSION 3.0)
+cmake_minimum_required(VERSION 3.0)
 project(simple_student_mgmt_sys) 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
