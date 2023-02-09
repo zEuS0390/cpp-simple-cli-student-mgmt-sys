@@ -3,7 +3,6 @@ project(simple_student_mgmt_sys)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_GENERATOR "MinGW Makefiles")
 list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/include")
 add_executable(
 	simple_student_mgmt_sys
