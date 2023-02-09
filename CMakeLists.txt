@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.0)
 project(simple_student_mgmt_sys) 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-include_directories(include)
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_GENERATOR "MinGW Makefiles")
+list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/include")
 add_executable(
 	simple_student_mgmt_sys
 	src/main.cpp
@@ -10,4 +12,9 @@ add_executable(
 	src/student.cpp
 	src/class.cpp
 	src/options.cpp
+)
+target_include_directories(
+	simple_student_mgmt_sys 
+	PUBLIC
+	"${EXTRA_INCLUDES}"
 )
