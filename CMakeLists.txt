@@ -1,9 +1,9 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
-PROJECT(simple_student_mgmt_sys) 
-SET(CMAKE_CXX_STANDARD 17)
-SET(CMAKE_CXX_STANDARD_REQUIRED True)
-INCLUDE_DIRECTORIES(include)
-ADD_EXECUTABLE(
+cmake_minimum_requirements(VERSION 3.0)
+project(simple_student_mgmt_sys) 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+include_directories(include)
+add_executable(
 	simple_student_mgmt_sys
 	src/main.cpp
 	src/person.cpp
